@@ -38,10 +38,6 @@ or individual libraries can be installed using
 
 Installing from PyPI
 =====================
-.. note:: This library is not available on PyPI yet. Install documentation is included
-   as a standard element. Stay tuned for PyPI availability!
-
-.. todo:: Remove the above note if PyPI version is/will be available at time of release.
 
 On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
 PyPI <https://pypi.org/project/circuitpython-consumer-control-extended/>`_.
@@ -94,8 +90,37 @@ Or the following command to update an existing version:
 Usage Example
 =============
 
-.. todo:: Add a quick, simple example. It and other examples should live in the
-examples folder and be included in docs/examples.rst.
+.. code-block:: python
+
+    import time
+    import board
+    import digitalio
+    import usb_hid
+    from adafruit_hid.consumer_control import ConsumerControl
+    from consumer_control_extended import AL_TEXT_EDITOR, AL_CALCULATOR
+
+    cc = ConsumerControl(usb_hid.devices)
+
+    # define buttons. these can be any physical switches/buttons, but the values
+    # here work out-of-the-box with a FunHouse UP and DOWN buttons.
+    button_up = digitalio.DigitalInOut(board.BUTTON_UP)
+    button_up.switch_to_input(pull=digitalio.Pull.DOWN)
+
+    button_down = digitalio.DigitalInOut(board.BUTTON_DOWN)
+    button_down.switch_to_input(pull=digitalio.Pull.DOWN)
+
+    while True:
+        if button_up.value:
+            print("Button up pressed!")
+            # open the system text editor
+            cc.send(AL_TEXT_EDITOR)
+
+        if button_down.value:
+            print("Button down pressed!")
+            # open the calculator
+            cc.send(AL_CALCULATOR)
+
+        time.sleep(0.2)
 
 Contributing
 ============
