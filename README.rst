@@ -2,8 +2,8 @@ Introduction
 ============
 
 
-.. image:: https://readthedocs.org/projects/circuitpython-consumer-control-extended/badge/?version=latest
-    :target: https://circuitpython-consumer-control-extended.readthedocs.io/
+.. image:: https://readthedocs.org/projects/consumer-control-extended/badge/?version=latest
+    :target: https://consumer-control-extended.readthedocs.io/
     :alt: Documentation Status
 
 
